@@ -28,11 +28,8 @@ export const fetchIngredientsFailed = () => {
 export const initIngredients = () => {
     return dispatch => {
         axios.get(process.env.REACT_APP_BACKEND_URL + "/Ingredients.json")
-        .then(response => {
-            dispatch(setIngredients(response.data))
-        })
-        .catch(error => {
-            dispatch(fetchIngredientsFailed())
-        });
+        .then(response => dispatch(setIngredients(response.data)),
+        error => dispatch(fetchIngredientsFailed())
+        )
     }
 }
